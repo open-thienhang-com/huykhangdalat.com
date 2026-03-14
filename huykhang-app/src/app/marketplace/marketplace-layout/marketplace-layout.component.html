@@ -1,0 +1,78 @@
+<div class="app-container">
+  <!-- Top App Bar (Header) -->
+  <header class="app-bar">
+    <div class="app-bar-left">
+      <button class="icon-button menu-btn" (click)="toggleSidebar()" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="brand-title">Huy Khang Marketplace</div>
+    </div>
+    
+    <div class="app-bar-right">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" placeholder="Tìm kiếm phòng..." class="search-input">
+      </div>
+      <button class="icon-button">
+        <i class="fa-regular fa-bell"></i>
+      </button>
+      <button class="icon-button user-avatar">
+        <i class="fa-regular fa-user"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="main-content-wrapper">
+    <!-- Sidebar / Drawer -->
+    <aside class="sidebar-drawer" [class.open]="isSidebarOpen">
+      <div class="drawer-header mobile-only">
+        <div class="brand-title">Huy Khang</div>
+        <button class="icon-button" (click)="closeSidebar()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      
+      <nav class="drawer-nav">
+        <ul class="nav-list">
+          <li class="nav-item active">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-house"></i> Tất cả các phòng
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-tag"></i> Đang khuyến mãi
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-regular fa-calendar-check"></i> Đã đặt của tôi
+            </a>
+          </li>
+          
+          <li class="divider"></li>
+          <li class="nav-subheader">Bộ lọc (Demo)</li>
+          
+          <li class="nav-item">
+            <label class="filter-checkbox">
+              <input type="checkbox"> Có Ban công
+            </label>
+          </li>
+          <li class="nav-item">
+            <label class="filter-checkbox">
+              <input type="checkbox"> Máy lạnh
+            </label>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Overlay for mobile drawer -->
+    <div class="drawer-overlay" *ngIf="isSidebarOpen" (click)="closeSidebar()"></div>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <ng-content></ng-content>
+    </main>
+  </div>
+</div>

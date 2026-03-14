@@ -1,0 +1,41 @@
+<div class="room-card" [class.unavailable]="!room.is_available">
+  <div class="card-image-wrapper">
+    <!-- Use a real API property if available later, falling back to a dummy API image -->
+    <img src="https://source.unsplash.com/800x600/?hotel,room,{{room.id}}" alt="{{room.name}}" class="room-image" onerror="this.src='https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=800'">
+    
+    <div class="status-badge" [ngClass]="room.is_available ? 'available' : 'booked'">
+      {{ room.is_available ? 'Khả dụng' : 'Đã đặt' }}
+    </div>
+  </div>
+
+  <div class="card-content">
+    <h3 class="room-title">{{ room.name }}</h3>
+
+    <div class="room-quick-stats">
+      <span title="Diện tích"><i class="fa-solid fa-ruler-combined"></i> {{ room.area }}m²</span>
+      <span title="Loại giường"><i class="fa-solid fa-bed"></i> {{ room.bed_count }} {{ room.bed_type }}</span>
+      <span title="Sức chứa"><i class="fa-solid fa-user-group"></i> Max {{ room.max_occupancy }}</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="room-amenities">
+      <span *ngIf="room.has_window" class="amenity-chip" title="Cửa sổ"><i class="fa-solid fa-window-maximize"></i> Cửa sổ</span>
+      <span *ngIf="room.has_balcony" class="amenity-chip" title="Ban công"><i class="fa-solid fa-dungeon"></i> Ban công</span>
+      <span *ngIf="room.has_private_bathroom" class="amenity-chip" title="WC Riêng"><i class="fa-solid fa-bath"></i> Wc</span>
+      <span *ngIf="room.has_air_conditioning" class="amenity-chip" title="Máy lạnh"><i class="fa-solid fa-snowflake"></i> AC</span>
+    </div>
+
+    <div class="card-actions">
+      <div class="price-block">
+        <span class="price-label">Chỉ từ</span>
+        <div class="price-value">${{ room.price_per_day }}<small>/đêm</small></div>
+      </div>
+      
+      <button class="btn-book" [disabled]="!room.is_available" (click)="bookRoom()">
+        <span class="btn-text">ĐẶT NGAY</span>
+        <span class="ripple"></span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="room-list-container">
+  <div class="list-header">
+    <h1 class="page-title">Khám Phá Phòng Nghỉ</h1>
+    <p class="subtitle">Tìm không gian hoàn hảo cho kỳ nghỉ của bạn tại Đà Lạt</p>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-state">
+    <div class="circular-loader"></div>
+    <span>Đang tải danh sách phòng...</span>
+  </div>
+
+  <div *ngIf="!isLoading && rooms.length === 0" class="empty-state">
+    <i class="fa-solid fa-hotel empty-icon"></i>
+    <h3>Chưa có phòng nào</h3>
+    <p>Rất tiếc, hiện tại không có phòng trống. Vui lòng quay lại sau.</p>
+  </div>
+
+  <div *ngIf="!isLoading && rooms.length > 0" class="room-grid">
+    <div class="grid-item" *ngFor="let room of rooms">
+      <app-room-card [room]="room"></app-room-card>
+    </div>
+  </div>
+</div>
